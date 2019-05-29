@@ -1,0 +1,37 @@
+public class Solution {
+
+	public static boolean checkBalanced(String exp) {
+		// Write your code here
+        int i=0,c=0;
+        char ch;
+        String st="",sq="[]",curl="{}",round="()",subs;
+while(i<exp.length())
+{
+    ch=exp.charAt(i);
+ 
+    if(ch=='['||ch=='{'||ch=='(')
+    {
+        c=c+1;
+        st+=ch;
+    }
+    if(ch==']'||ch=='}'||ch==')' && st.length()>0 ){
+        st+=ch; 
+       
+        subs=st.substring((st.length()-2));
+     
+        if(subs.compareTo(sq)==0||subs.compareTo(curl)==0||subs.compareTo(round)==0){
+            st=st.substring(0,(st.length()-2));
+            c=c-1;
+        }
+        else
+        {break;}
+    }
+    i=i+1;
+}
+        if(c==0)
+            return true;
+        else 
+            return false;
+         
+	}
+}
