@@ -1,0 +1,74 @@
+import java.util.Scanner;
+import java.lang.*;
+
+public class Main {
+public boolean dotchar(String input,String reg){
+    
+    int index,c=0;
+    String beg ,end,Ibeg,Iend;
+    index=reg.indexOf(".");
+   beg=reg.substring(0,index);
+    end=reg.substring(index+1);
+    Ibeg=input.substring(0,index);
+    Iend=input.substring(index+1);
+    if(Ibeg.compareTo(beg)==0)
+    {++c;}
+    if(Iend.compareTo(end)==0)
+    {++c;}
+    { if(c==2)
+        return true;
+    else
+        return false;}
+}
+    public boolean starchar(String input,String reg)
+    {
+        int index,i=0,pos;
+        boolean c=true;
+        String beg,end;
+        index=reg.indexOf("*");
+        beg=reg.substring(0,index);
+        end=reg.substring(index+1);
+        int lenE=end.length();
+        int lenI=input.length();
+        pos=index;
+        while(c==true&& pos<(lenI-lenE))
+        {
+            if(input.charAt(pos)==beg.charAt(index-1))
+            {
+                c=true;
+                //i=(i+1)%(beg.length());
+                pos=pos+1;
+                
+            }
+            else{c=false;}
+        }
+        return c;
+    }
+	
+	public static void main(String[] args) {
+		/* Your class should be named Main.
+ 			* Read input as specified in the question.
+ 			* Print output as specified in the question.
+		*/
+
+		// Write your code here
+        Main ob =new Main();
+        Scanner sc= new Scanner(System.in);
+        String inStr,reg;
+        boolean ans=false;
+       
+        reg=sc.nextLine();
+         inStr=sc.nextLine();
+        if(reg.contains("."))
+        {
+            ans=ob.dotchar(inStr,reg);
+        }
+        
+       if(reg.contains("*"))
+       {
+           ans=ob.starchar(inStr,reg);
+       }
+ System.out.println(ans);
+	}
+
+}
